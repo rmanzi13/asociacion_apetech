@@ -37,17 +37,14 @@ jobs:
           ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            cd /home/rmanzimerica || exit 1
-            if [ ! -d 'asociacion_apetech/.git' ]; then
-              git clone https://github.com/rmanzi13/asociacion_apetech.git
-            else
-              cd asociacion_apetech
-              git pull origin main
+            cd /home/rmanzimerica
+            # Eliminar la carpeta del repositorio si ya existe
+            if [ -d 'asociacion_apetech' ]; then
+              rm -rf asociacion_apetech
             fi
-            # Modificar permisos para evitar errores de npm
-            sudo chown -R \$USER:\$USER /home/rmanzimerica/asociacion_apetech
+            # Clonar el repositorio nuevamente
+            git clone https://github.com/rmanzi13/asociacion_apetech.git
             cd asociacion_apetech &&
-            npm cache clean --force &&   # Limpia el caché de npm
             npm install &&
             npm run build &&
             pm2 restart all
