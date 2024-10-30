@@ -36,6 +36,8 @@ jobs:
               cd asociacion_apetech
               git pull origin main
             fi
+            # Modificar permisos para evitar errores de npm
+            sudo chown -R \$USER:\$USER /home/rmanzimerica/asociacion_apetech
             cd asociacion_apetech &&
             npm install &&
             npm run build &&
