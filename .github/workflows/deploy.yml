@@ -58,7 +58,7 @@ jobs:
             fi
             mkdir -p asociacion_apetech
             tar -xzf build.tar.gz -C asociacion_apetech
-            pm2 restart all
+            pm2 start app.js --name 'my-app' || pm2 restart all
           " -- -o StrictHostKeyChecking=no
 
 
