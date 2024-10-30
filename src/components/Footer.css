@@ -1,0 +1,92 @@
+.footer {
+  background-color: #003366;
+  color: #ffffff !important;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  position: relative;
+  z-index: 10;
+}
+
+.footer p {
+  color: #ffffff !important; /* Color blanco específico para los párrafos en el footer */
+}
+
+/* Parte superior del footer: copyright y redes sociales */
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Espacio entre el texto y las redes sociales */
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-top p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px; /* Reduce el espacio entre los iconos */
+}
+
+.social-icon {
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-icons a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons a:hover .social-icon {
+  color: #00aced; /* Cambia esto al color que prefieras para el hover */
+}
+
+/* Parte inferior del footer: enlaces en columnas */
+.footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Tres columnas iguales */
+    gap: 20px;
+    justify-content: center; /* Centra las tres columnas en el contenedor */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-link {
+    margin: 0 auto; /* Centra el contenido de cada columna */
+}
+
+.footer-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer-link a:hover {
+  color: #00aced;
+  text-decoration: underline;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-link a {
+    font-size: 10px;
+  }
+}
+
+

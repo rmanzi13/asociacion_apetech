@@ -1,0 +1,101 @@
+.webinar-container {
+  min-height: 100vh; /* Mantiene el contenido visible en todo el viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /*height: 100vh; /* Ajusta la altura para que se vea bien en toda la pantalla */
+  text-align: center;
+}
+
+.webinar-content {
+  max-width: 500px; /* Ajusta este valor si la imagen sigue siendo muy grande */
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Para centrar el contenido */
+}
+
+.webinar-content h1 {
+  font-size: 2rem;
+  color: #004080;
+  margin-bottom: 10px;
+}
+
+.webinar-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.webinar-image {
+  max-width: 100%;  /* Mantiene el tamaño proporcional */
+  height: auto; /* Asegura que no se deforme */
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.webinar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-secondary {
+  display: block; /* Esto asegura que el botón se muestre */
+  width: 100%; /* Ocupar todo el ancho disponible */
+  margin-top: 10px; /* Añadir algo de espacio superior */
+}
+
+/* Asegúrate de que el botón ocupe todo el ancho en dispositivos pequeños */
+@media (max-width: 768px) {
+  .webinar-buttons {
+    width: 100%;
+    margin: 0 auto; /* Centrar los botones */
+  }
+
+  .btn-secondary {
+    padding: 10px 15px; /* Ajusta el padding para mantener la consistencia */
+    font-size: 14px; /* Ajusta el tamaño de la fuente para móviles */
+    width: 100%; /* Para que el botón ocupe todo el ancho */
+    max-width: 95%; /* Evitar que se salga de los márgenes */
+    margin: 10px 0; /* Añade espacio alrededor del botón */
+  }
+
+  /* Asegurar que los contenedores tengan suficiente espacio */
+  .webinar-content {
+    padding: 10px; /* Reducir el padding en móviles */
+  }
+
+  .footer {
+    font-size: 10px; /* Ajustar tamaño de texto en el footer */
+  }
+}
+
+.btn-primary {
+  background-color: #004080;
+  color: white; /* Asegura que el texto sea blanco */
+}
+
+.btn-primary:hover {
+  background-color: #003366;
+  color: white; /* Asegura que el texto siga siendo blanco en hover */
+}
+
+.btn-secondary {
+  background-color: #00aaff;
+}
+
+.btn-secondary:hover {
+  background-color: #0088cc;
+}
+

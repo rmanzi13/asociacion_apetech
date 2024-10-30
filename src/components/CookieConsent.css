@@ -1,0 +1,41 @@
+/* CookieConsent.css */
+.cookie-consent {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 400px;
+  z-index: 9999;
+}
+
+.cookie-consent p {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.cookie-consent a {
+  color: #004080;
+  text-decoration: underline;
+}
+
+.cookie-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accept-btn, .configure-btn {
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.accept-btn:hover, .configure-btn:hover {
+  background-color: #003366;
+}

@@ -1,0 +1,54 @@
+.contact-page {
+  padding: 60px;  /* Aumentar el padding */
+  max-width: 700px; /* Aumentar el ancho máximo del contenedor */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-page h1 {
+  margin-bottom: 30px; /* Aumentar el margen inferior */
+  font-size: 2.5rem;  /* Agrandar el tamaño de la fuente */
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 30px; /* Más espacio entre los campos */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px; /* Un poco más de espacio entre el label y el input */
+  font-weight: bold;
+  font-size: 1.2rem;  /* Agrandar las etiquetas */
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;  /* Aumentar el padding de los inputs */
+  border-radius: 8px; /* Bordes más redondeados */
+  border: 1px solid #ccc;
+  font-size: 1.1rem;  /* Agrandar el texto de los inputs */
+}
+
+.form-group textarea {
+  height: 150px; /* Aumentar la altura del textarea */
+}
+
+.btn-submit {
+  padding: 15px 30px; /* Botón más grande */
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;  /* Agrandar el texto del botón */
+}
+
+.btn-submit:hover {
+  background-color: #003366;
+}

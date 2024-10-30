@@ -1,0 +1,33 @@
+.hero {
+  background-size: cover;            /* Asegura que la imagen cubra todo el área */
+  background-position: center;       /* Centra la imagen */
+  background-repeat: no-repeat;      /* Evita que la imagen se repita */
+  height: 500px;                     /* Altura del banner */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.hero-content {
+   z-index: 1;  /* Asegura que el contenido esté por encima de la imagen */
+}
+
+.cta-btn {
+  background-color: #004080;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #003366;
+}
+
+
+

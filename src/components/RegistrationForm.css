@@ -1,0 +1,42 @@
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.registration-form label, 
+.registration-form input, 
+.registration-form select, 
+.registration-form button {
+  margin-bottom: 15px;
+}
+
+.registration-form button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.registration-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para los intereses */
+.interests-container {
+  display: flex;
+  flex-direction: column; /* Poner cada interés en una nueva línea */
+  margin-bottom: 20px;
+}
+
+.interest-item {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.interest-item input {
+  margin-right: 10px;
+}
+

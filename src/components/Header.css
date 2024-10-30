@@ -1,0 +1,164 @@
+/* Contenedor principal */
+.header-container {
+  background-color: #003366;
+  padding: 15px 30px;
+  position: relative;
+  z-index: 10; /* Asegura que esté en una capa superior */
+}
+
+/* Alinear el contenido del header */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px; /* Ajuste fino */
+}
+
+.logo {
+  height: 40px;
+}
+
+/* Botón del menú tipo burger (oculto por defecto) */
+.burger-menu {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Botón "Te puede interesar" en la versión web */
+.interest-button {
+  margin-left: auto;
+}
+
+.btn-interest {
+  background-color: #008CBA;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+  /*margin-left: auto; /* Asegura que el botón se alinee a la derecha */
+}
+
+.btn-interest:hover {
+  background-color: #005f73;
+  color: #ffffff; /* Mantener el color de texto blanco para mejor visibilidad */
+}
+
+/* Solo mostrar en la versión desktop */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Navegación */
+.navbar {
+  display: flex;
+  flex-direction: row; /* Solo vertical en móvil */
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px; /* Ajusta este valor hasta que el menú esté alineado */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  pointer-events: auto;
+}
+
+/* MEDIA QUERIES PARA PANTALLAS PEQUEÑAS */
+@media (max-width: 768px) {
+  /* Mostrar el icono burger */
+  .burger-menu {
+    display: block;
+    position: absolute;
+    right: -170px; /* Alinearlo a la derecha */
+    top: 5px; /* Asegura que esté bien posicionado verticalmente */
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    z-index: 10; /* Asegura que esté visible por encima del menú desplegable */
+  }
+
+  /* Ocultar "Te puede interesar" en la versión web */
+  .desktop-only {
+    display: none;
+  }
+
+  /* Mostrar "Te puede interesar" dentro del menú en móviles */
+  .mobile-only {
+    display: block;
+  }
+
+  /* Ajustar el tamaño del logo para la versión móvil */
+  .logo {
+    height: 35px;
+	position: relative;
+    z-index: 11; /* Asegura que el logo esté encima del menú desplegable */
+  }
+
+  /* Ocultar el menú en móviles hasta que se abra */
+  .navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+	justify-content: center; /* Alineación vertical */
+    background-color: #003366;
+    position: fixed;
+    top: 95px;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    padding: 10px 0;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+	align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center; /* Centra el texto dentro de cada enlace */
+    gap: 10px;
+	margin-top: 10px; /* Ajusta este valor */
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    padding: 10px;
+	width: 100%; /* Opcional: hace que los enlaces ocupen todo el ancho disponible */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

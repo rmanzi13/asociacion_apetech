@@ -1,0 +1,45 @@
+/* index.css: solo código CSS aquí */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f5;
+}
+
+/* Estilos globales */
+h1, h2, h3 {
+  color: #004080;
+  margin: 0;
+}
+
+a {
+  color: #004080;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #003366;
+}
+
+p {
+  font-size: 1rem;
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #003366;
+}
+
+
+

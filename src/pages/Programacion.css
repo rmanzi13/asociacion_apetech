@@ -1,0 +1,35 @@
+.programacion-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.programacion-webinar {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.programacion-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+h1 {
+  color: #004080;
+}
+
+h2 {
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #333;
+}
+

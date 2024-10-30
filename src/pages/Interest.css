@@ -1,0 +1,24 @@
+.interest-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.interest-list {
+  list-style: none;
+  padding: 0;
+}
+
+.interest-list li {
+  margin-bottom: 10px;
+}
+
+.interest-list a {
+  color: #004080;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.interest-list a:hover {
+  text-decoration: underline;
+  color: #003366;
+}
