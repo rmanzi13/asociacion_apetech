@@ -27,30 +27,21 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-cache
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm-cache
 
-      - name: Install dependencies and build project
-        run: |
-          npm install
-          npm run build  # Esto compila el proyecto en GitHub Actions
-
-      - name: Copy build to VM
-        env:
-          INSTANCE_NAME: "apetech-vm"
-          ZONE: "us-central1-a"
       - name: Comprimir la carpeta de construcción para la transferencia
         run: |
           tar -czf build.tar.gz build
-          
+
       - name: Esperar propagación de clave SSH
         run: sleep 30  # Espera 30 segundos para asegurar la propagación
-        
+
       - name: Transferir el archivo comprimido a la VM
         run: |
           gcloud compute scp build.tar.gz $INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
-          
+
       - name: Descomprimir y mover el build en la VM
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
@@ -62,6 +53,7 @@ jobs:
             tar -xzf build.tar.gz -C asociacion_apetech
             pm2 restart all
           "
+
 
 
 
