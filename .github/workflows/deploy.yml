@@ -43,6 +43,8 @@ jobs:
         run: |
           # Comprimir la carpeta de construcción para la transferencia
           tar -czf build.tar.gz build
+          # Añadir un tiempo de espera para permitir la propagación de la clave SSH
+          sleep 20  # Espera 20 segundos
           # Transferir el archivo comprimido a la VM
           gcloud compute scp build.tar.gz $INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
           # Descomprimir y mover el build en la VM
