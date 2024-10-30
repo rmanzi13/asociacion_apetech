@@ -51,7 +51,7 @@ jobs:
 
       - name: Descomprimir y mover el build en la VM
         run: |
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE -- -o StrictHostKeyChecking=no --command "
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
             cd /home/rmanzimerica
             if [ -d 'asociacion_apetech/build' ]; then
               rm -rf asociacion_apetech/build
@@ -59,7 +59,7 @@ jobs:
             mkdir -p asociacion_apetech
             tar -xzf build.tar.gz -C asociacion_apetech
             pm2 restart all
-          "
+          " -- -o StrictHostKeyChecking=no
 
 
 
