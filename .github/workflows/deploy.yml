@@ -40,7 +40,7 @@ jobs:
 
       - name: Transferir el archivo comprimido a la VM
         run: |
-          gcloud compute scp build.tar.gz $INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
+          gcloud compute scp build.tar.gz rmanzimerica@$INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
 
       - name: Descomprimir y mover el build en la VM
         run: |
