@@ -27,13 +27,17 @@ jobs:
         env:
           INSTANCE_NAME: "apetech-vm"
           ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
-        run: |
-          gcloud auth list  # Verifica que esté autenticado antes de ssh
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            cd /home/rmanzimerica/asociacion_apetech &&
-            git pull origin main &&
-            npm install &&
-            npm run build &&
-            pm2 restart all
-          "
-
+         run: |
+           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+             cd /home/rmanzimerica || exit 1
+             if [ ! -d 'asociacion_apetech/.git' ]; then
+               git clone https://github.com/rmanzi13/asociacion_apetech.git
+             else
+               cd asociacion_apetech
+               git pull origin main
+             fi
+             cd asociacion_apetech &&
+             npm install &&
+             npm run build &&
+             pm2 restart all
+           "
