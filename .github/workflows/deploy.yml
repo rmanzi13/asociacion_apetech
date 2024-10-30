@@ -27,27 +27,34 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-cache
+            ${{ runner.os }}-node-
 
-      - name: Deploy to VM
+      - name: Install dependencies and build project
+        run: |
+          npm install
+          npm run build  # Esto compila el proyecto en GitHub Actions
+
+      - name: Copy build to VM
         env:
           INSTANCE_NAME: "apetech-vm"
-          ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
+          ZONE: "us-central1-a"
         run: |
+          # Comprimir la carpeta de construcción para la transferencia
+          tar -czf build.tar.gz build
+          # Transferir el archivo comprimido a la VM
+          gcloud compute scp build.tar.gz $INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
+          # Descomprimir y mover el build en la VM
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
             cd /home/rmanzimerica
-            # Eliminar la carpeta del repositorio si ya existe
-            if [ -d 'asociacion_apetech' ]; then
-              rm -rf asociacion_apetech
+            if [ -d 'asociacion_apetech/build' ]; then
+              rm -rf asociacion_apetech/build
             fi
-            # Clonar el repositorio nuevamente
-            git clone https://github.com/rmanzi13/asociacion_apetech.git
-            cd asociacion_apetech &&
-            npm install &&
-            npm run build &&
+            mkdir -p asociacion_apetech
+            tar -xzf build.tar.gz -C asociacion_apetech
             pm2 restart all
           "
+
 
 
