@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:  # Define las variables globalmente para el job
+      INSTANCE_NAME: "apetech-vm"
+      ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
 
     steps:
       - name: Checkout repository
@@ -53,6 +56,7 @@ jobs:
             tar -xzf build.tar.gz -C asociacion_apetech
             pm2 restart all
           "
+
 
 
 
