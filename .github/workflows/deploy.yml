@@ -9,24 +9,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-  - name: Authenticate to Google Cloud
-    uses: google-github-actions/auth@v0
-    with:
-      credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
-  - name: Set up Google Cloud SDK
-    uses: google-github-actions/setup-gcloud@v1
-    with:
-      project_id: "asociacion-apetech"
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: "asociacion-apetech"
 
       - name: Deploy to VM
         env:
           INSTANCE_NAME: "apetech-vm"
-          ZONE: "us-central1-a"  # Ejemplo: us-central1-a
+          ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
         run: |
           gcloud auth list  # Verifica que esté autenticado antes de ssh
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
@@ -36,3 +36,4 @@ steps:
             npm run build &&
             pm2 restart all
           "
+
