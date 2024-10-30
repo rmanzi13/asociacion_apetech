@@ -39,7 +39,7 @@ jobs:
           tar -czf build.tar.gz build
 
       - name: Esperar propagación de clave SSH
-        run: sleep 60  # Aumenta el tiempo de espera a 60 segundos
+        run: sleep 120  # Aumenta el tiempo de espera a 60 segundos
 
       - name: Transferir el archivo comprimido a la VM
         run: |
@@ -51,7 +51,7 @@ jobs:
 
       - name: Descomprimir y mover el build en la VM
         run: |
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE -- -o StrictHostKeyChecking=no --command "
             cd /home/rmanzimerica
             if [ -d 'asociacion_apetech/build' ]; then
               rm -rf asociacion_apetech/build
