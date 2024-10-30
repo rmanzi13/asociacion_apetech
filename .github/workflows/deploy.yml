@@ -1,0 +1,33 @@
+name: Deploy to Google Cloud VM
+
+on:
+  push:
+    branches:
+      - main  # Esto ejecutará el despliegue solo en el branch 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          project_id: "asociacion-apetech"
+
+      - name: Deploy to VM
+        env:
+          INSTANCE_NAME: "apetech-vm"
+          ZONE: "us-central1-a"  # Ejemplo: us-central1-a
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            cd /home/rmanzimerica/asociacion_apetech &&
+            git pull origin main &&
+            npm install &&
+            npm run build &&
+            pm2 restart all
+          "
