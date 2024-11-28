@@ -34,6 +34,7 @@ const Header = () => {
           <li><Link to="/nosotros" onClick={closeMenu}>Nosotros</Link></li>
           <li><Link to="/webinar" onClick={closeMenu}>Webinar</Link></li>
           <li><Link to="/colaboradores" onClick={closeMenu}>Colaboradores</Link></li>
+		  <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li> {/* Aquí se añade el Blog */}
           <li><Link to="/contacto" onClick={closeMenu}>Contacto</Link></li>
           {/* Añadir "Te puede interesar" en el menú móvil */}
           <li className="mobile-only"><Link to="/interest" onClick={closeMenu}>Te puede interesar</Link></li>

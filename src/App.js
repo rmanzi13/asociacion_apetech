@@ -10,8 +10,10 @@ import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import Collaborators from './pages/Collaborators';
 import Blog from './pages/Blog';
+import Articulo from "./pages/Articulo";
 import RegistrationForm from './components/RegistrationForm';
 import Interest from './pages/Interest';
+import UpcomingResources from './pages/UpcomingResources';
 import CookieConsent from './components/CookieConsent'; // Componente del aviso
 import CookieSettings from './pages/CookieSettings'; // Página de configuración
 import './styles/styles.css';  // Importa el archivo de estilos globales
@@ -30,8 +32,10 @@ function App() {
           <Route path="/contacto" element={<Contact />} />
 		  <Route path="/colaboradores" element={<Collaborators />} />
 		  <Route path="/blog" element={<Blog />} />
+		  <Route path="/blog/articulo" element={<Articulo />} />
 		  <Route path="/registro" element={<RegistrationForm />} />
 		  <Route path="/interest" element={<Interest />} />
+		  <Route path="/upcoming-resources" element={<UpcomingResources />} />
 		  <Route path="/configuracion-cookies" element={<CookieSettings />} /> {/* Ruta de configuración */}
           <Route path="*" element={<NotFound />} /> {/* Ruta para páginas no encontradas */}
         </Routes>

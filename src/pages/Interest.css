@@ -1,24 +1,92 @@
 .interest-container {
   padding: 40px;
   text-align: center;
+  background-color: #f9f9f9;
 }
 
-.interest-list {
-  list-style: none;
-  padding: 0;
+.interest-container h1 {
+  color: #003366;
+  margin-bottom: 20px;
 }
 
-.interest-list li {
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.interest-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-5px);
+}
+
+.interest-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.interest-card h2 {
+  font-size: 1.2rem;
+  color: #004080;
   margin-bottom: 10px;
 }
 
-.interest-list a {
-  color: #004080;
-  text-decoration: none;
-  font-size: 1.1rem;
+.interest-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
 }
 
-.interest-list a:hover {
-  text-decoration: underline;
-  color: #003366;
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #f9f9f9;
+  color: #004080;
+  border: 1px solid #004080;
+  margin-top: 20px;
+}
+
+.btn-secondary:hover {
+  background-color: #004080;
+  color: white;
+}
+
+.see-more {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.icon {
+  width: 24px; /* Ajusta según sea necesario */
+  height: 24px;
+}
+
+
