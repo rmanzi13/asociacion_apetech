@@ -38,6 +38,10 @@ jobs:
         run: |
           tar -czf build.tar.gz build
 
+      - name: Verificar archivo build.tar.gz
+        run: |
+          ls -lh build.tar.gz
+
       - name: Esperar propagación de clave SSH
         run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
 
@@ -48,6 +52,10 @@ jobs:
             echo "Retrying scp in 15 seconds..."
             sleep 15
           done
+
+      - name: Verificar archivo en la VM
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "ls -lh /home/rmanzimerica/build.tar.gz"
 
       - name: Descomprimir y mover el build en la VM
         run: |
@@ -62,8 +70,15 @@ jobs:
       - name: Reiniciar servidor (si usas Nginx)
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            sudo systemctl restart nginx  # Solo si usas Nginx
+            sudo systemctl restart nginx
           " -- -o StrictHostKeyChecking=no
+
+      - name: Reiniciar PM2 (si usas PM2)
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            pm2 restart my-app
+          " -- -o StrictHostKeyChecking=no
+
 
 
 
