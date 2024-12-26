@@ -9,13 +9,13 @@ const Footer = () => {
       <div className="footer-top">
         <p>© 2024 Asociación Transformando Vidas. Todos los derechos reservados.</p>
         <div className="social-icons">
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/company/asociacionapetech" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/asociacionapetech/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faInstagram} className="social-icon" />
           </a>
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/AsociacionApetech/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faFacebook} className="social-icon" />
           </a>
         </div>

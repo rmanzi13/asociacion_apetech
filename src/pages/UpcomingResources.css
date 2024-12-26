@@ -1,0 +1,22 @@
+.upcoming-resources-container {
+  padding: 40px;
+  text-align: center;
+}
+
+.upcoming-resources-container h1 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.upcoming-resources-container p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.upcoming-resources-container .upcoming-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

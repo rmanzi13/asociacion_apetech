@@ -1,31 +1,31 @@
-import React from 'react';
-import './Blog.css'; // Asegúrate de crear los estilos correspondientes
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Blog.css";
 
 const Blog = () => {
-  return (
-    <section className="blog">
-      <div className="blog-header">
-        <h1>Blog y Noticias</h1>
-        <p>Conoce las últimas novedades de nuestra asociación y del mundo de la educación tecnológica.</p>
-      </div>
-      <div className="blog-grid">
-        {/* Aquí puedes añadir más artículos o noticias */}
-        <div className="blog-post">
-          <img src="/assets/blog1.jpg" alt="Imagen artículo 1" />
-          <h3>Título del Artículo</h3>
-          <p>Breve introducción al artículo o noticia...</p>
-          <a href="/blog/articulo1" className="read-more">Leer más</a>
+    return (
+        <div className="blog-container">
+            <h1>Blog y Noticias</h1>
+            <div className="blog-featured">
+                <div className="blog-card">
+                    <img 
+                        src="https://res.cloudinary.com/dfzzoaw9l/image/upload/v1732732299/banner_mtzvjl.png" 
+                        alt="Transformando vidas con tecnología" 
+                        className="featured-image"
+                    />
+                    <h2>Transformando Vidas a Través de la Educación Tecnológica</h2>
+                    <p>
+                        Descubre cómo la educación tecnológica está impactando vidas y promoviendo la inclusión...
+                    </p>
+                    <Link to="/blog/articulo" className="btn-primary">Leer más</Link>
+                </div>
+            </div>
+            <div className="blog-upcoming">
+                <h3>Próximos Artículos</h3>
+                <p>Estamos trabajando en contenido nuevo para ti. ¡Vuelve pronto!</p>
+            </div>
         </div>
-        <div className="blog-post">
-          <img src="/assets/blog2.jpg" alt="Imagen artículo 2" />
-          <h3>Título del Artículo</h3>
-          <p>Breve introducción al artículo o noticia...</p>
-          <a href="/blog/articulo2" className="read-more">Leer más</a>
-        </div>
-        {/* Añade más artículos según el contenido */}
-      </div>
-    </section>
-  );
+    );
 };
 
 export default Blog;
