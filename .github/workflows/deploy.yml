@@ -39,7 +39,7 @@ jobs:
           tar -czf build.tar.gz build
 
       - name: Esperar propagación de clave SSH
-        run: sleep 120  # Aumenta el tiempo de espera a 60 segundos
+        run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
 
       - name: Transferir el archivo comprimido a la VM
         run: |
@@ -55,9 +55,16 @@ jobs:
             cd /home/rmanzimerica
             rm -rf asociacion_apetech/build
             mkdir -p asociacion_apetech
-            tar -xzf build.tar.gz -C asociacion_apetech
-            pm2 restart my-app || pm2 start /home/rmanzimerica/asociacion_apetech/Backend/app.js --name 'my-app'
+            tar -xzf build.tar.gz -C /home/rmanzimerica/asociacion_apetech
+            ls -lt /home/rmanzimerica/asociacion_apetech/build  # Verificar que los archivos estén ahí
           " -- -o StrictHostKeyChecking=no
+
+      - name: Reiniciar servidor (si usas Nginx)
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            sudo systemctl restart nginx  # Solo si usas Nginx
+          " -- -o StrictHostKeyChecking=no
+
 
 
 
