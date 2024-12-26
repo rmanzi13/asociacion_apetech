@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Configuración de CORS en desarrollo local
 const cors = require('cors');
 app.use(cors({
-    origin: 'http://localhost:3000', // Limitar al dominio local
+    origin: 'http://34.136.145.134:3000', // Limitar al dominio local
     methods: ['GET', 'POST'] // Limitar solo a los métodos necesarios
 }));
 
@@ -21,11 +21,11 @@ app.use('/api/contact', require('./routes/contact'));  // Ruta de contacto
 app.use('/api/register', registerRoutes);  // Ruta de registro
 
 // Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Manejar todas las demás rutas (SPA - Single Page Application)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 // Conexión a MongoDB Atlas

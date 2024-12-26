@@ -1,3 +1,4 @@
+
 /* Contenedor principal */
 .header-container {
   background-color: #003366;
@@ -112,7 +113,7 @@
   /* Ajustar el tamaño del logo para la versión móvil */
   .logo {
     height: 35px;
-    position: relative;
+	position: relative;
     z-index: 11; /* Asegura que el logo esté encima del menú desplegable */
   }
 
@@ -121,7 +122,7 @@
     display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Alineación vertical */
+	justify-content: center; /* Alineación vertical */
     background-color: #003366;
     position: fixed;
     top: 95px;
@@ -137,16 +138,28 @@
 
   .nav-links {
     flex-direction: column;
-    align-items: center; /* Centra los elementos horizontalmente */
+	align-items: center; /* Centra los elementos horizontalmente */
     text-align: center; /* Centra el texto dentro de cada enlace */
     gap: 10px;
-    margin-top: 10px; /* Ajusta este valor */
+	margin-top: 10px; /* Ajusta este valor */
   }
 
   .nav-links a {
     font-size: 16px;
     padding: 10px;
-    width: 100%; /* Opcional: hace que los enlaces ocupen todo el ancho disponible */
+	width: 100%; /* Opcional: hace que los enlaces ocupen todo el ancho disponible */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
