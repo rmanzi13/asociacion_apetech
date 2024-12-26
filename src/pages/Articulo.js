@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Para obtener el parámetro de la URL.
 import "./Blog.css"; // Asegúrate de incluir estilos necesarios.
 
 const Articulo = () => {
+	const { id } = useParams(); // Obtén el id del artículo desde la URL.
+    const [article, setArticle] = useState(null); // Estado para guardar el artículo.
+    const [error, setError] = useState(null); // Estado para manejar errores.
+    const [loading, setLoading] = useState(true); // Estado para mostrar un cargador.
+
+    useEffect(() => {
+        // Función para obtener el artículo desde el backend.
+        const fetchArticle = async () => {
+            try {
+                const response = await fetch(`http://localhost:4000/api/articles/${id}`);
+                if (!response.ok) {
+                    throw new Error("Error al obtener el artículo");
+                }
+                const data = await response.json();
+                setArticle(data); // Actualizamos el estado con los datos del artículo.
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false); // Finalizamos el proceso de carga.
+            }
+        };
+		if (id) {
+            fetchArticle();
+        } else {
+            setError("ID de artículo no proporcionado");
+            setLoading(false);
+        }
+
+    }, [id]); // Ejecuta el efecto cuando cambia el id.
+
+    if (loading) return <p>Cargando artículo...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!article) return <p>No se encontró el artículo.</p>;
     return (
         <div className="blog-article-container">
             <div className="article-banner">

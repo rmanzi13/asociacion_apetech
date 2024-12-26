@@ -71,6 +71,17 @@ button:hover {
   background-color: #003366;
 }
 
+/* styles.css */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  font-size: 18px;
+  color: #003366; /* Alineado con tu estilo */
+}
+
+
 /* Media query para dispositivos móviles */
 @media (max-width: 768px) {
   body {
@@ -93,5 +104,7 @@ button:hover {
   button {
     width: 100%; /* Para que los botones ocupen todo el ancho en pantallas pequeñas */
   }
+  
+  
 }
 
