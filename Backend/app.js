@@ -6,12 +6,14 @@ const articlesRoutes = require('./routes/articles');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const { authenticateToken, adminOnly } = require('./middleware/auth');
 const adminWebinars = require('./routes/adminWebinars');
+const adminArticles = require('./routes/adminArticles');  // Importa la nueva ruta para artículos
 
 // Inicializa 'app' antes de usarlo
 const app = express();
 
 // Middleware y rutas después de la inicialización de 'app'
 app.use('/api/admin/webinars', authenticateToken, adminOnly, adminWebinars); // Ruta protegida de webinars
+app.use('/api/articles', authenticateToken, adminOnly, adminArticles);
 
 mongoose.connect('mongodb+srv://rmanzimerica:kN5KAvZtayS9V24v@cluster0.3c6rc.mongodb.net/apetech_db?retryWrites=true&w=majority', {
   connectTimeoutMS: 10000 // Opcional, si necesitas ajustar el tiempo de espera
