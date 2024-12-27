@@ -37,6 +37,7 @@ jobs:
       - name: Comprimir la carpeta de construcción para la transferencia
         run: |
           tar -czf build.tar.gz build
+          ls -lh build.tar.gz  # Verificar el tamaño del archivo
 
       - name: Esperar propagación de clave SSH
         run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
@@ -48,11 +49,18 @@ jobs:
             echo "Retrying scp in 15 seconds..."
             sleep 15
           done
+          
+      - name: Verificar archivos en la VM
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            ls -lt /home/rmanzimerica/asociacion_apetech
+          " -- -o StrictHostKeyChecking=no
+
 
       - name: Descomprimir y mover el build en la VM
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            cd /home/rmanzimerica
+            cd /home/rmanzimerica/asociacion_apetech
             rm -rf asociacion_apetech/build
             mkdir -p asociacion_apetech
             tar -xzf build.tar.gz -C /home/rmanzimerica/asociacion_apetech
@@ -63,6 +71,18 @@ jobs:
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
             sudo systemctl restart nginx  # Solo si usas Nginx
+          " -- -o StrictHostKeyChecking=no
+          
+      - name: Verificar el estado de Nginx
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            sudo systemctl status nginx
+          " -- -o StrictHostKeyChecking=no
+          
+      - name: Revisar los logs de Nginx
+        run: |
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
+            sudo tail -n 100 /var/log/nginx/error.log  # Revisa los últimos 100 registros de error
           " -- -o StrictHostKeyChecking=no
 
 
