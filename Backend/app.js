@@ -8,6 +8,8 @@ const { authenticateToken, adminOnly } = require('./middleware/auth');
 const adminWebinars = require('./routes/adminWebinars');
 const adminArticles = require('./routes/adminArticles');  // Importa la nueva ruta para artículos
 
+//Vamos a comenzar el deploy para actualizar los archivos de la VM
+
 // Inicializa 'app' antes de usarlo
 const app = express();
 
