@@ -31,6 +31,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 const isAuthenticated = true; // Cambia por tu lógica real
 const userRole = 'admin'; // Cambia según el usuario
 
+//Comienzan los cambios a verse en la VM
+
 function App() {
   return (
     <Router>
