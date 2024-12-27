@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const AdminWebinars = () => {
   const [webinars, setWebinars] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();  // Usamos useHistory para redirigir
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const isAdmin = JSON.parse(localStorage.getItem('isAdmin')); // Obtener el rol de admin del localStorage
+
+    // Verificar si hay token y si el usuario tiene permisos de admin
+    if (!token || !isAdmin) {
+      history.push('/login'); // Redirigir al login si no está autenticado o no es admin
+      return;
+    }
+
     const fetchWebinars = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/webinars');
+        const response = await fetch('http://localhost:4000/api/admin/webinars', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!response.ok) throw new Error('Error al obtener webinars');
         const data = await response.json();
         setWebinars(data);
@@ -19,12 +34,17 @@ const AdminWebinars = () => {
       }
     };
     fetchWebinars();
-  }, []);
+  }, [history]);
 
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este webinar?')) {
       try {
-        const response = await fetch(`http://localhost:4000/api/webinars/${id}`, { method: 'DELETE' });
+        const response = await fetch(`http://localhost:4000/api/admin/webinars/${id}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         if (!response.ok) throw new Error('Error al eliminar webinar');
         setWebinars(webinars.filter((webinar) => webinar._id !== id));
         alert('Webinar eliminado correctamente');

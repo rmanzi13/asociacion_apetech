@@ -1,9 +1,17 @@
-const express require('express');
+const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const Article = require('./models/Article'); // Ajusta la ruta según tu estructura
 const articlesRoutes = require('./routes/articles');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+const { authenticateToken, adminOnly } = require('./middleware/auth');
+const adminWebinars = require('./routes/adminWebinars');
+
+// Inicializa 'app' antes de usarlo
+const app = express();
+
+// Middleware y rutas después de la inicialización de 'app'
+app.use('/api/admin/webinars', authenticateToken, adminOnly, adminWebinars); // Ruta protegida de webinars
 
 mongoose.connect('mongodb+srv://rmanzimerica:kN5KAvZtayS9V24v@cluster0.3c6rc.mongodb.net/apetech_db?retryWrites=true&w=majority', {
   connectTimeoutMS: 10000 // Opcional, si necesitas ajustar el tiempo de espera
@@ -11,14 +19,11 @@ mongoose.connect('mongodb+srv://rmanzimerica:kN5KAvZtayS9V24v@cluster0.3c6rc.mon
   .then(() => console.log("Conectado a MongoDB"))
   .catch(err => console.error("Error al conectar con MongoDB:", err));
 
-const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Configuración de CORS
 const cors = require('cors');
-// Configurar CORS
-// Configuración básica de CORS
 app.use(cors({
     origin: 'http://localhost:3000', // Permitir solicitudes desde tu frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
@@ -31,6 +36,8 @@ app.use('/api/register', require('./routes/register'));
 // Ruta para gestionar los artículos
 app.use('/api/articles', require('./routes/articles'));
 app.use('/api/webinars', require('./routes/webinars'));
+
+
 
 // Servir archivos estáticos de la carpeta build (Frontend)
 app.use(express.static(path.join(__dirname, '../build')));
