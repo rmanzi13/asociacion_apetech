@@ -3,14 +3,14 @@ name: Deploy to Google Cloud VM
 on:
   push:
     branches:
-      - main
+      - main  # Esto ejecutará el despliegue solo en el branch 'main'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
+    env:  # Define las variables globalmente para el job
       INSTANCE_NAME: "apetech-vm"
-      ZONE: "us-central1-a"
+      ZONE: "us-central1-a"  # Ajusta a la zona de tu VM
 
     steps:
       - name: Checkout repository
@@ -34,18 +34,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-cache
 
-      - name: Build application
-        run: |
-          npm install
-          npm run build
-
       - name: Comprimir la carpeta de construcción para la transferencia
         run: |
           tar -czf build.tar.gz build
 
+      - name: Esperar propagación de clave SSH
+        run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
+
       - name: Transferir el archivo comprimido a la VM
         run: |
-          gcloud compute scp build.tar.gz rmanzimerica@$INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE
+          for i in {1..5}; do
+            gcloud compute scp build.tar.gz rmanzimerica@$INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE && break
+            echo "Retrying scp in 15 seconds..."
+            sleep 15
+          done
 
       - name: Descomprimir y mover el build en la VM
         run: |
@@ -54,14 +56,14 @@ jobs:
             rm -rf asociacion_apetech/build
             mkdir -p asociacion_apetech
             tar -xzf build.tar.gz -C /home/rmanzimerica/asociacion_apetech
+            ls -lt /home/rmanzimerica/asociacion_apetech/build  # Verificar que los archivos estén ahí
           " -- -o StrictHostKeyChecking=no
 
-      - name: Reiniciar PM2
+      - name: Reiniciar servidor (si usas Nginx)
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            pm2 restart my-app
+            sudo systemctl restart nginx  # Solo si usas Nginx
           " -- -o StrictHostKeyChecking=no
-
 
 
 
