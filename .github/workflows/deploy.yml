@@ -42,29 +42,14 @@ jobs:
       - name: Esperar propagación de clave SSH
         run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
 
-      - name: Transferir el archivo comprimido a la VM
-        run: |
-          for i in {1..5}; do
-            gcloud compute scp build.tar.gz rmanzimerica@$INSTANCE_NAME:/home/rmanzimerica --zone=$ZONE && break
-            echo "Retrying scp in 15 seconds..."
-            sleep 15
-          done
-          
-      - name: Verificar archivos en la VM
+      - name: Transferir y desplegar build en la VM
         run: |
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            ls -lt /home/rmanzimerica/asociacion_apetech
-          " -- -o StrictHostKeyChecking=no
-
-
-      - name: Descomprimir y mover el build en la VM
-        run: |
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
-            cd /home/rmanzimerica/asociacion_apetech
-            rm -rf asociacion_apetech/build
-            mkdir -p asociacion_apetech
-            tar -xzf build.tar.gz -C /home/rmanzimerica/asociacion_apetech
-            ls -lt /home/rmanzimerica/asociacion_apetech/build  # Verificar que los archivos estén ahí
+            mkdir -p /home/rmanzimerica/asociacion_apetech/build
+            rm -f /home/rmanzimerica/asociacion_apetech/build.tar.gz
+            tar -xzf build.tar.gz -C /home/rmanzimerica/asociacion_apetech/build
+            echo 'Despliegue completado. Archivos en:'
+            ls -lt /home/rmanzimerica/asociacion_apetech/build
           " -- -o StrictHostKeyChecking=no
 
       - name: Reiniciar servidor (si usas Nginx)
@@ -84,6 +69,7 @@ jobs:
           gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command "
             sudo tail -n 100 /var/log/nginx/error.log  # Revisa los últimos 100 registros de error
           " -- -o StrictHostKeyChecking=no
+
 
 
 
