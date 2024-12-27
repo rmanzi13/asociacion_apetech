@@ -39,6 +39,12 @@ jobs:
           tar -czf build.tar.gz build
           ls -lh build.tar.gz  # Verificar el tamaño del archivo
 
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Esperar propagación de clave SSH
         run: sleep 120  # Aumenta el tiempo de espera a 120 segundos
 
