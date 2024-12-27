@@ -1,10 +1,20 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const AdminPanel = ({ isAuthenticated, userRole }) => {
-  if (!isAuthenticated || userRole !== 'admin') {
-    return <Navigate to="/registro" replace />;
-  }
+
+const AdminPanel = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const isAdmin = JSON.parse(localStorage.getItem('isAdmin')); // Obtener el rol de admin del localStorage
+
+    // Verificar si hay token y si el usuario tiene permisos de admin
+    if (!token || !isAdmin) {
+      navigate.push('/login'); // Redirigir al login si no está autenticado o no es admin
+    }
+  }, [navigate]);
 
   return (
     <div className="admin-panel">

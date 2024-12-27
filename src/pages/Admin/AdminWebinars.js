@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AdminWebinars = () => {
   const [webinars, setWebinars] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const history = useHistory();  // Usamos useHistory para redirigir
+  const navigate = useNavigate();  // Usamos useHistory para redirigir
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -13,7 +13,7 @@ const AdminWebinars = () => {
 
     // Verificar si hay token y si el usuario tiene permisos de admin
     if (!token || !isAdmin) {
-      history.push('/login'); // Redirigir al login si no está autenticado o no es admin
+      navigate.push('/login'); // Redirigir al login si no está autenticado o no es admin
       return;
     }
 
@@ -34,7 +34,7 @@ const AdminWebinars = () => {
       }
     };
     fetchWebinars();
-  }, [history]);
+  }, [navigate]);
 
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este webinar?')) {
