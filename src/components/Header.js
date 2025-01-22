@@ -23,8 +23,8 @@ const Header = () => {
         </button>
 
         {/* Solo mostrar el botón en la versión web */}
-        <div className="interest-button desktop-only">
-          <Link to="/interest" className="btn-interest">Te puede interesar</Link>
+        <div className="resource-button desktop-only">
+          <Link to="/resource" className="btn-resource">Te puede interesar</Link>
         </div>
       </div>
 
@@ -34,10 +34,10 @@ const Header = () => {
           <li><Link to="/nosotros" onClick={closeMenu}>Nosotros</Link></li>
           <li><Link to="/webinar" onClick={closeMenu}>Webinar</Link></li>
           <li><Link to="/colaboradores" onClick={closeMenu}>Colaboradores</Link></li>
-		  <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li> {/* Aquí se añade el Blog */}
+		  <li><Link to="/noticias" onClick={closeMenu}>Noticias</Link></li> {/* Aquí se añade el Noticias */}
           <li><Link to="/contacto" onClick={closeMenu}>Contacto</Link></li>
           {/* Añadir "Te puede interesar" en el menú móvil */}
-          <li className="mobile-only"><Link to="/interest" onClick={closeMenu}>Te puede interesar</Link></li>
+          <li className="mobile-only"><Link to="/resource" onClick={closeMenu}>Te puede interesar</Link></li>
         </ul>
       </nav>
     </header>

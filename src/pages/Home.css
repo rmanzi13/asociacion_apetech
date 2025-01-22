@@ -67,6 +67,22 @@
   color: #ffffff; /* Mantener el color de texto blanco para mejor visibilidad */
 }
 
+/* Ajustar estilo del texto introductorio */
+.intro-text {
+  font-size: 1.2rem; /* Tamaño ligeramente mayor */
+  line-height: 1.6; /* Mejora el espaciado entre líneas */
+  max-width: 600px; /* Limita el ancho para que sea más compacto */
+  margin: 10px auto; /* Espaciado superior e inferior */
+  text-align: center; /* Asegura que el texto esté centrado */
+  font-weight: 500; /* Usa un peso intermedio para destacar sin exagerar */
+  color: #333; /* Un color más oscuro para mejor visibilidad */
+}
+
+
+
+
+
+
 
 
 

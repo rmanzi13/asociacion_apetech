@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const isAdmin = true; // Cambiar esto por la lógica de autenticación real si es necesario
 
   return (
     <nav style={styles.navbar}>
@@ -14,15 +13,11 @@ const Navbar = () => {
           <Link to="/webinar" style={styles.navLink}>Webinars</Link>
         </li>
         <li style={styles.navItem}>
-          <Link to="/blog" style={styles.navLink}>Blog</Link>
+          <Link to="/noticias" style={styles.navLink}>Noticias</Link>
         </li>
         <li style={styles.navItem}>
           <Link to="/contacto" style={styles.navLink}>Contacto</Link>
         </li>
-        {isAdmin && (
-          <li style={styles.navItem}>
-            <Link to="/admin/webinars" style={styles.navLink}>Administrar Webinars</Link>
-          </li>
         )}
       </ul>
     </nav>

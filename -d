@@ -1,3 +1,0 @@
-{"error":"Article validation failed: content: Path `content` is required., title: Path `title` is required."}--_curl_--"title": "Nuevo Artículo"
---_curl_-- "content": "Este es el contenido del artículo"
---_curl_-- "author": "Administrador"

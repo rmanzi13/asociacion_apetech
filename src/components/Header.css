@@ -29,11 +29,11 @@
 }
 
 /* Botón "Te puede interesar" en la versión web */
-.interest-button {
+.resource-button {
   margin-left: auto;
 }
 
-.btn-interest {
+.btn-resource {
   background-color: #008CBA;
   color: white;
   padding: 8px 16px;
@@ -44,7 +44,7 @@
   /*margin-left: auto; /* Asegura que el botón se alinee a la derecha */
 }
 
-.btn-interest:hover {
+.btn-resource:hover {
   background-color: #005f73;
   color: #ffffff; /* Mantener el color de texto blanco para mejor visibilidad */
 }
@@ -61,7 +61,7 @@
 /* Navegación */
 .navbar {
   display: flex;
-  flex-direction: row; /* Solo vertical en móvil */
+  flex-direction: row; /* Solo vertical en móvil */ 
   justify-content: center;
   align-items: center;
   margin-top: -30px; /* Ajusta este valor hasta que el menú esté alineado */
@@ -98,6 +98,7 @@
     color: white;
     z-index: 10; /* Asegura que esté visible por encima del menú desplegable */
   }
+ 
 
   /* Ocultar "Te puede interesar" en la versión web */
   .desktop-only {
@@ -148,5 +149,6 @@
     padding: 10px;
     width: 100%; /* Opcional: hace que los enlaces ocupen todo el ancho disponible */
   }
+  
 }
 

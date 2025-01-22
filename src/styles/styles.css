@@ -1,4 +1,10 @@
 /* styles.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body, html {
   height: 100%;
   margin: 0;
@@ -104,6 +110,18 @@ button:hover {
   button {
     width: 100%; /* Para que los botones ocupen todo el ancho en pantallas pequeñas */
   }
+  
+  .center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  min-height: 100vh; /* Centrado vertical */
+  width: 90%; /* Controlar el ancho */
+  max-width: 800px; /* Opcional: ajusta según prefieras */
+}
   
   
 }

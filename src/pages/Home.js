@@ -6,7 +6,10 @@ const Home = () => {
     <div className="home">
       <div className="hero-content">
         <h1>Unimos Culturas, Transformamos Futuro</h1>
-        <p>Educación tecnológica accesible para todos, impulsando la inclusión social y el talento multicultural.</p>
+        <p className="intro-text">
+		  Educación tecnológica accesible para todos, impulsando la inclusión social
+		  y el talento multicultural.
+		</p>
         <p>
           En APETECH, creemos en el poder transformador de la educación tecnológica. Nuestro objetivo es brindar acceso universal a las herramientas digitales, fomentando la integración social y el desarrollo de talento en un mundo multicultural. 
           Formamos una comunidad diversa de estudiantes, profesionales y empresas que colaboran para construir un futuro más inclusivo y tecnológicamente avanzado.

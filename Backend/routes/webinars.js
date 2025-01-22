@@ -1,60 +1,73 @@
 const express = require('express');
 const router = express.Router();
 const Webinar = require('../models/Webinar');
+const { getWebinars, getWebinarById } = require('../controllers/webinarController');
+//const { authenticateToken} = require('../middleware/auth');
 
-// Obtener todos los webinars
-router.get('/', async (req, res) => {
-  try {
-    const webinars = await Webinar.find();
-    res.json(webinars);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al obtener los webinars' });
-  }
-});
 
-// Obtener un webinar por ID
-router.get('/:id', async (req, res) => {
-  try {
-    const webinar = await Webinar.findById(req.params.id);
-    if (!webinar) return res.status(404).json({ error: 'Webinar no encontrado' });
-    res.json(webinar);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al obtener el webinar' });
-  }
-});
+// Ruta para obtener todos los webinars
+router.get('/', getWebinars);
 
-// Crear un nuevo webinar
+// Ruta para obtener un webinar por ID
+router.get('/:id', getWebinarById);
+
+// Ruta para crear un nuevo webinar
 router.post('/', async (req, res) => {
+  console.log('Datos recibidos:', req.body);  // Añade este log para verificar que los datos llegan correctamente
+
+  const { title, description, date, link } = req.body;
+
+  if (!title || !description || !date || !link) {
+    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+  }
+
   try {
-    const { title, description, date, link, image } = req.body;
-    const webinar = new Webinar({ title, description, date, link, image });
-    await webinar.save();
-    res.status(201).json(webinar);
+    const newWebinar = new Webinar(req.body);
+    await newWebinar.save();
+    res.status(201).json(newWebinar);
   } catch (error) {
-    res.status(500).json({ error: 'Error al crear el webinar' });
+    console.error('Error al crear el webinar:', error);
+    res.status(500).json({ message: 'Error al crear el webinar' });
   }
 });
 
-// Actualizar un webinar por ID
+// Actualizar webinar
 router.put('/:id', async (req, res) => {
-  try {
-    const webinar = await Webinar.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!webinar) return res.status(404).json({ error: 'Webinar no encontrado' });
-    res.json(webinar);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al actualizar el webinar' });
-  }
+    const { id } = req.params;
+    const webinarData = req.body;
+	
+	 if (!id) {
+        return res.status(400).json({ message: 'ID no proporcionado' });
+    }
+
+
+    try {
+        const updatedWebinar = await Webinar.findByIdAndUpdate(id, webinarData, { new: true });
+        if (!updatedWebinar) {
+            return res.status(404).json({ message: 'Webinar no encontrado' });
+        }
+        res.json(updatedWebinar);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al actualizar el webinar' });
+    }
 });
 
-// Eliminar un webinar por ID
 router.delete('/:id', async (req, res) => {
-  try {
-    const webinar = await Webinar.findByIdAndDelete(req.params.id);
-    if (!webinar) return res.status(404).json({ error: 'Webinar no encontrado' });
-    res.json({ message: 'Webinar eliminado con éxito' });
-  } catch (error) {
-    res.status(500).json({ error: 'Error al eliminar el webinar' });
-  }
+    const { id } = req.params;
+    console.log("ID recibido para eliminación:", id);
+    try {
+        const deletedWebinar = await Webinar.findByIdAndDelete(id);
+        if (!deletedWebinar) {
+            return res.status(404).json({ message: "Webinar no encontrado" });
+        }
+        res.status(200).json({ message: "Webinar eliminado exitosamente" });
+    } catch (error) {
+        console.error("Error al eliminar el webinar:", error);
+        res.status(500).json({ message: "Error al eliminar el webinar" });
+    }
 });
+
+
 
 module.exports = router;

@@ -1,50 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Para obtener el parámetro de la URL.
-import "./Blog.css"; // Asegúrate de incluir estilos necesarios.
+import React from "react";
+import './Articulo.css';
 
 const Articulo = () => {
-	const { id } = useParams(); // Obtén el id del artículo desde la URL.
-    const [article, setArticle] = useState(null); // Estado para guardar el artículo.
-    const [error, setError] = useState(null); // Estado para manejar errores.
-    const [loading, setLoading] = useState(true); // Estado para mostrar un cargador.
-
-    useEffect(() => {
-        // Función para obtener el artículo desde el backend.
-        const fetchArticle = async () => {
-            try {
-                const response = await fetch(`http://localhost:4000/api/articles/${id}`);
-                if (!response.ok) {
-                    throw new Error("Error al obtener el artículo");
-                }
-                const data = await response.json();
-                setArticle(data); // Actualizamos el estado con los datos del artículo.
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false); // Finalizamos el proceso de carga.
-            }
-        };
-		if (id) {
-            fetchArticle();
-        } else {
-            setError("ID de artículo no proporcionado");
-            setLoading(false);
-        }
-
-    }, [id]); // Ejecuta el efecto cuando cambia el id.
-
-    if (loading) return <p>Cargando artículo...</p>;
-    if (error) return <p>Error: {error}</p>;
-    if (!article) return <p>No se encontró el artículo.</p>;
     return (
-        <div className="blog-article-container">
+        <div className="noticias-article-container">
             <div className="article-banner">
-                <img src="https://res.cloudinary.com/dfzzoaw9l/image/upload/v1732727342/featured-blog_hffg8c.jpg" alt="Transformando vidas con tecnología" />
+                <img 
+                    src="https://res.cloudinary.com/dfzzoaw9l/image/upload/v1732727342/featured-blog_hffg8c.jpg" 
+                    alt="Transformando vidas con tecnología" 
+                />
             </div>
             <div className="article-content">
-                <h1>Transformando Vidas a Través de la Educación Tecnológica: Conoce a APETECH</h1>
+                <h1>Transformando Vidas a Través de la Educación Tecnológica</h1>
                 <p>
-                    En el dinámico mundo actual, la tecnología es el motor que impulsa el progreso y la innovación. Sin embargo, el acceso a una educación tecnológica de calidad sigue siendo un desafío para muchos. Es en este contexto que nace la Asociación APETECH, fundada en 2024 con la misión de democratizar el aprendizaje tecnológico y eliminar las barreras que impiden a las personas alcanzar su máximo potencial.
+                    La educación tecnológica ha demostrado ser un motor de cambio en comunidades marginadas, 
+                    brindando oportunidades de aprendizaje y acceso a herramientas que transforman vidas.
                 </p>
                 <h2>¿Quiénes Somos?</h2>
                 <p>
@@ -78,3 +48,6 @@ const Articulo = () => {
 };
 
 export default Articulo;
+
+
+

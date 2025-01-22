@@ -1,0 +1,14 @@
+/* Estilo para el contenedor de la imagen */
+.article-banner {
+    display: flex;
+    justify-content: center;  /* Centra la imagen horizontalmente */
+    align-items: center;  /* Centra la imagen verticalmente (en caso de que la altura del contenedor sea mayor que la imagen) */
+    padding: 20px;
+}
+
+/* Estilo para la imagen */
+.article-banner img {
+    max-width: 100%;  /* Asegura que la imagen no se desborde */
+    height: auto;  /* Mantiene la relación de aspecto de la imagen */
+    border-radius: 8px;  /* Si quieres bordes redondeados */
+}
