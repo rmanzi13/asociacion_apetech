@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import RegistrationForm from './RegistrationForm';
+import apiClient from '../utils/apiClient';
 
 const WebinarDetails = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const WebinarDetails = () => {
 
     const fetchWebinarDetails = async (webinarId) => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/webinars/${webinarId}`);
+        const response = await apiClient.get(`/webinars/${webinarId}`);
         setWebinar(response.data);
       } catch (error) {
         console.error("Error al obtener los detalles del webinar:", error);
