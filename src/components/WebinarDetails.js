@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import RegistrationForm from './RegistrationForm';
+import apiClient from '../utils/apiClient';
 
 const WebinarDetails = () => {
   const { id } = useParams();
@@ -15,22 +16,15 @@ const WebinarDetails = () => {
       return;
     }
 
-    console.log(`${process.env.REACT_APP_API_URL}/webinars/${id}`); // Verificar la URL generada
-
     const fetchWebinarDetails = async (webinarId) => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/webinars/${webinarId}`);
-        console.log("Datos obtenidos del webinar:", response.data); // Verificar la respuesta de la API
+
+        const response = await apiClient.get(`/webinars/${webinarId}`);
+
         setWebinar(response.data);
       } catch (error) {
         console.error("Error al obtener los detalles del webinar:", error);
-        if (error.response) {
-          console.error("Respuesta del servidor:", error.response.data);
-        } else if (error.request) {
-          console.error("No se recibió respuesta del servidor:", error.request);
-        } else {
-          console.error("Error al configurar la solicitud:", error.message);
-        }
+
       }
     };
 
@@ -44,7 +38,7 @@ const WebinarDetails = () => {
   const startRegistration = () => {
     setIsRegistering(true);
   };
-  
+
   // Función para manejar el envío del formulario de registro
   const handleRegistration = async (formData) => {
     try {
