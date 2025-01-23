@@ -10,7 +10,7 @@ const WebinarAdmin = () => {
 
   const fetchWebinars = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/webinars');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/webinars`);
       const data = await response.json();
       setWebinars(data);
     } catch (error) {
@@ -44,7 +44,7 @@ const WebinarAdmin = () => {
         const token = localStorage.getItem('token');
         console.log('Token:', token); // Verifica que el token también esté presente
         try {
-            const response = await fetch(`http://localhost:4000/api/webinars/${webinarId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/webinars/${webinarId}`, {
                 method: 'DELETE',
                 headers: {
 					'Content-Type': 'application/json',

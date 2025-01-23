@@ -26,10 +26,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: 'http://apetech-uruguay.org', // Dominios permitidos
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
 }));
+
+
+// Middleware para registrar solicitudes
+app.use((req, res, next) => {
+  const origin = req.get('Origin') || req.get('Referer') || 'Desconocido';
+  console.log(`Solicitud desde ${origin}, Método: ${req.method}`);
+  next();
+});
+
 app.use(bodyParser.json()); // Para parsear las solicitudes con JSON
 
 mongoose.connect('mongodb+srv://rmanzimerica:kN5KAvZtayS9V24v@cluster0.3c6rc.mongodb.net/apetech_db?retryWrites=true&w=majority', {

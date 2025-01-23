@@ -15,12 +15,22 @@ const WebinarDetails = () => {
       return;
     }
 
+    console.log(`${process.env.REACT_APP_API_URL}/webinars/${id}`); // Verificar la URL generada
+
     const fetchWebinarDetails = async (webinarId) => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/webinars/${webinarId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/webinars/${webinarId}`);
+        console.log("Datos obtenidos del webinar:", response.data); // Verificar la respuesta de la API
         setWebinar(response.data);
       } catch (error) {
         console.error("Error al obtener los detalles del webinar:", error);
+        if (error.response) {
+          console.error("Respuesta del servidor:", error.response.data);
+        } else if (error.request) {
+          console.error("No se recibió respuesta del servidor:", error.request);
+        } else {
+          console.error("Error al configurar la solicitud:", error.message);
+        }
       }
     };
 
@@ -38,7 +48,7 @@ const WebinarDetails = () => {
   // Función para manejar el envío del formulario de registro
   const handleRegistration = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/register', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, formData);
       if (response.status === 200) {
         // Redirigir a la página de agradecimiento
         navigate('/thank-you');

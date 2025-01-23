@@ -38,7 +38,7 @@ const WebinarForm = () => {
     e.preventDefault();
     setIsSubmitting(true); // Desactiva el botón al iniciar la solicitud
     try {
-      const response = await fetch(`http://localhost:4000/api/webinars`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/webinars`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

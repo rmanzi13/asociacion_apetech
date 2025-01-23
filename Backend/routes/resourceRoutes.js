@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Resource = require('../models/resource'); // Ajusta el path según tu estructura
+const Resource = require('../models/Resource'); // Ajusta el path según tu estructura
 
 // Obtener un recurso específico por ID
 router.get('/:id', async (req, res) => {

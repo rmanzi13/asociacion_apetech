@@ -22,7 +22,7 @@ const Resource = () => {
 
     // Aquí podrías hacer una petición a la API para obtener los recursos si es necesario
     const fetchResources = async () => {
-      const response = await axios.get('http://localhost:4000/api/resources');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/resources`);
       setResources(response.data);
     };
     fetchResources();

@@ -14,7 +14,9 @@ const WebinarPage = () => {
   useEffect(() => {
     const fetchWebinars = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/webinars");
+        const url = `${process.env.REACT_APP_API_URL}/webinars`;
+        console.log("Fetching from URL:", url); // Verificar que la URL sea correcta
+        const response = await axios.get(url);
         setWebinars(response.data); // Guarda los datos obtenidos en el estado
       } catch (error) {
         console.error("Error al obtener los webinars:", error);

@@ -55,7 +55,7 @@ const EditWebinarForm = ({ webinarToEdit, fetchWebinars, onCancel }) => {
   const token = localStorage.getItem('token');
 
   try {
-    const response = await fetch(`http://localhost:4000/api/webinars/${webinarId}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/webinars/${webinarId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
